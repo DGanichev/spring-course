@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="d-flex justify-content-around">
+                <h2><p th:text="${post.title}"></p></h2>
+            </div>
+            <hr class="hr-2" />
+            <div class="d-flex justify-content-between">
+                <span>
+                    <small>Created: <span th:text="${#temporals.format(post.created, 'yyyy-MM-dd HH:mm')}"></span></small>
+                </span>
+                <span>
+                    <small>Last modified: <span th:text="${#temporals.format(post.modified, 'yyyy-MM-dd HH:mm')}"></span></small>
+                </span>
+                <span>
+                    <small>Created by: <span th:text="${post.author}"></span></small>
+                </span>
+                <span>
+                    <small>Active: <span th:text="${post.active}"></span></small>
+                </span>
+            </div>
+            <hr class="hr-2" />
+            <div class="row">
+                <div class="col-md-12">
+                    Images:
+                    <div th:if="${#lists.isEmpty(images)}">No images</div>
+                    <div class="d-flex flex-row">
+                        <div th:each="image : ${images}" class="mr-2">
+                            <img th:src="@{'/images/' + ${post.author} + '/' + ${post.id} + '/' + ${image}}" th:width="200px" th:height="200px" class="rounded float-left"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-2" />
+            <div class="row">
+                <div class="col-md-6">
+                    Tags:
+                    <span th:if="${post.tags.empty}" class="ml-1">
+                        <span> No posts available. </span>
+                    </span>
+                    <span th:each="tag : ${post.tags}" class="ml-1">
+                        <span th:text="${tag}"></span>
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    URL:
+                    <span th:text="${post.url}" class="ml-1"></span>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    Text:
+                    <span th:text="${post.text}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="navbar">
+    <th:block th:if="${#authorization.expression('isAnonymous()')}">
+        <th:block th:replace="fragments/navbar-guest"></th:block>
+    </th:block>
+    <th:block th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasAuthority(''ROLE_BLOGGER'')')}">
+        <th:block th:replace="fragments/navbar-user"></th:block>
+    </th:block>
+    <th:block th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
+        <th:block th:replace="fragments/navbar-admin"></th:block>
+    </th:block>
+</th:block>

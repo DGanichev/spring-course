@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="d-flex justify-content-around">
+                <h2><p>User profile</p></h2>
+            </div>
+            <hr class="hr-2" />
+            <div class="d-flex justify-content-between">
+                <span>
+                    <small>Created: <span th:text="${#temporals.format(user.created, 'yyyy-MM-dd HH:mm')}"></span></small>
+                </span>
+                <span>
+                    <small>Last modified: <span th:text="${#temporals.format(user.modified, 'yyyy-MM-dd HH:mm')}"></span></small>
+                </span>
+                <span>
+                    <small>Active: <span th:text="${user.active}"></span></small>
+                </span>
+            </div>
+            <hr class="hr-2" />
+            <div class="row">
+                <div class="col-md-12">
+                    Images:
+                    <div th:if="${#lists.isEmpty(images)}">No images</div>
+                    <div class="d-flex flex-row">
+                        <div th:each="image : ${images}" class="mr-2">
+                            <img th:src="@{'/images/' + ${user.email} + '/profile/' + ${image}}" th:width="200px" th:height="200px" class="rounded float-left"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-2" />
+            <div class="d-flex justify-content-between mt-2">
+                <span>
+                    E-mail: <span th:text="${user.email}"></span>
+                </span>
+                <span>
+                    Full name:
+                    <span th:text="${user.firstName + ' ' + user.lastName}" class="ml-1"></span>
+                </span>
+                <span>
+                    Role:
+                    <span th:text="${user.roles[0].role}" class="ml-1"></span>
+                </span>
+            </div>
+            <hr class="hr-2" />
+            <div class="d-flex justify-content-end mt-2">
+                <a th:href="@{'/users/edit/' + ${user.id}}" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+</body>
+</html>

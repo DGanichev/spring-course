@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-center font-weight-bold">Login</h1>
+            <hr class="hr-2">
+            <form th:action="@{/login}" th:method="post">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control" id="email"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password"/>
+                </div>
+                <hr class="hr-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="button-holder d-flex justify-content-end">
+                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="button-holder d-flex justify-content-start">
+                            <a href="/register" class="btn btn-lg btn-secondary">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <footer class="footer mt-5 p-3 fixed-bottom">
+        <div class="container">
+            <div class="container-fluid text-center">&copy; Simple Blogging 2020. Sofia University.</div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-center font-weight-bold">Register</h1>
+            <hr class="hr-2">
+            <form th:action="@{/register}" th:method="POST">
+                <div class="form-group">
+                    <label for="email"></label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email"/>
+                </div>
+                <div class="form-group">
+                    <label for="firstName"></label>
+                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="First name"/>
+                </div>
+                <div class="form-group">
+                    <label for="lastName"></label>
+                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Last name"/>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" name="password" class="form-control" id="password"
+                           placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword"
+                           placeholder="Confirm Password"/>
+                </div>
+                <hr class="hr-2">
+                <div class="button-holder d-flex justify-content-around">
+                    <button type="submit" class="btn btn-lg btn-primary">Register</button>
+                </div>
+                <div class="d-flex justify-content-center mt-1">
+                    <p class="mr-2">or<p>
+                    <a href="/login">Login</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <footer class="footer mt-5 p-3 fixed-bottom">
+        <div class="container">
+            <div class="text-muted container-fluid text-center">&copy; Simple Blogging 2020. Sofia University.</div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

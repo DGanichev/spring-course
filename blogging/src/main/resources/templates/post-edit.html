@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-center font-weight-bold">Edit post</h1>
+            <hr class="hr-2">
+            <form th:action="@{'/posts/edit/' + ${post.id}}" th:method="post" th:object="${post}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title"></label>
+                    <input type="text" name="title" th:field="*{title}" class="form-control" id="title" placeholder="Title"/>
+                </div>
+                <div class="form-group">
+                    <label for="textarea">Text</label>
+                    <textarea class="form-control" id="textarea" name="text" th:field="*{text}" rows="5" placeholder="Enter some text..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tags"></label>
+                    <input type="text" name="tags" th:field="*{tags}" class="form-control" id="tags" placeholder="Tags"/>
+                </div>
+                <div class="form-group">
+                    <label for="url"></label>
+                    <input type="url" name="url" th:field="*{url}" class="form-control" id="url" placeholder="URL"/>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="active" th:field="*{active}" id="active">
+                    <label class="form-check-label" for="active">Active</label>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="file" class="form-control-file" />
+                </div>
+                <hr class="hr-2">
+                <div class="button-holder d-flex justify-content-around">
+                    <button type="submit" class="btn btn-lg btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <footer class="footer mt-5 p-3 fixed-bottom">
+        <div class="container">
+            <div class="text-muted container-fluid text-center">&copy; Simple Blogging 2020. Sofia University.</div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

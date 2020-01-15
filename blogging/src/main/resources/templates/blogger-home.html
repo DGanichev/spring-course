@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row text-center">
+                <h2>Posts</h2>
+            </div>
+            <hr class="hr-2">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Active</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${posts.empty}">
+                        <td colspan="5"> No posts available. </td>
+                    </tr>
+                    <tr th:each="post : ${posts}">
+                        <td><span th:text="${postStat.index + 1}"></span></td>
+                        <td><span th:text="${post.title}"></span></td>
+                        <td><span th:text="${post.author}"></span></td>
+                        <td><span th:text="${post.active}"></span></td>
+                        <td>
+                            <span class="mr-1" th:if="${#strings.equals(post.author, #authentication.getPrincipal().getUsername())}">
+                                <a th:href="@{'/posts/edit/' + ${post.id}}">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                            </span>
+                            <span class="mr-1">
+                                <a th:href="@{'/posts/' + ${post.id}}">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                            </span>
+                            <span th:if="${#strings.equals(post.author, #authentication.getPrincipal().getUsername())}">
+                                <a th:href="@{'/posts/delete/' + ${post.id}}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="button-holder d-flex justify-content-end mt-2">
+                    <a href="/posts/create" class="btn btn-lg btn-primary">Create post</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <footer class="footer mt-5 p-3 fixed-bottom">
+        <div class="container-fluid">
+            <div class="text-muted container-fluid text-center">&copy; Simple Blogging 2020. Sofia University.</div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

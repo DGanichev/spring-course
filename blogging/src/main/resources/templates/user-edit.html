@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/navbar"></th:block>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-center font-weight-bold">Edit user profile</h1>
+            <hr class="hr-2">
+            <form th:action="@{'/users/edit/' + ${user.id}}" th:method="post" th:object="${user}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="firstName"></label>
+                    <input class="form-control" name="firstName" id="firstName" th:field="*{firstName}" placeholder="First name" />
+                </div>
+                <div class="form-group">
+                    <label for="lastName"></label>
+                    <input type="text" name="lastName" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last name"/>
+                </div>
+                <div class="form-group">
+                    <label for="url"></label>
+                    <input type="url" name="url" th:field="*{url}" class="form-control" id="url" placeholder="URL"/>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="active" th:field="*{active}" id="active">
+                    <label class="form-check-label" for="active">Active</label>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="file" class="form-control-file" />
+                </div>
+                <hr class="hr-2">
+                <div class="button-holder d-flex justify-content-around">
+                    <button type="submit" class="btn btn-lg btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <footer class="footer mt-5 p-3 fixed-bottom">
+        <div class="container">
+            <div class="text-muted container-fluid text-center">&copy; Simple Blogging 2020. Sofia University.</div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
